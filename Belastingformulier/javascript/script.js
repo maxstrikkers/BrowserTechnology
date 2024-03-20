@@ -77,11 +77,3 @@ buttonsToHideContent.forEach(button => button.addEventListener('change', () => s
 buttonsToShowContent.forEach(button => button.addEventListener('change', () => showHideContent(button, 'block')));
 
 buttonsToShowAndHideContent.forEach(button => button.addEventListener('change',() => showAndHideContent(button)));
-
-
-// console.log(document.querySelector('.navUl').children);
-// document.querySelectorAll('nav').addEventListener('click', function(element){
-//     console.log(element);
-// });
-
-// // console.log(document.querySelectorAll('nav'))

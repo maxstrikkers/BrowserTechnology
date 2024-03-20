@@ -194,3 +194,11 @@ input[type=file]{
 
 
   /* :user-invalid */
+
+input:user-invalid {
+    background-color: red;
+}
+
+input:user-valid {
+    background-color: green;
+}

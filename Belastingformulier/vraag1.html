@@ -41,33 +41,36 @@
                             <!-- Geen pattern nodig; de browser zorgt voor de datumvalidatie. -->
                         </label>
                     </fieldset> <!--EINDE VRAAG 1A-->
+                    
                     <fieldset> <!-- VRAAG 1B -->
                         <legend><span>1b</span>Was de overledene getrouwd of had de overledene een geregistreerd partner op het moment van overlijden?</legend>
                         <fieldset>
                             <label>
-                                <input type="radio" name="partnerStatus" value="ja">
+                                <input type="radio" class="showConditionalContent" name="partnerStatus" value="ja"  required title="Vul deze vraag in" data-show-hide="conditionalVraag1b">
                                 Ja
                             </label>
                             <label>
-                                <input type="radio" name="partnerStatus" value="nee">
+                                <input type="radio" class="hideConditionalContent" name="partnerStatus" value="nee" required title="Vul deze vraag in" data-show-hide="conditionalVraag1b">
                                 Nee. Ga verder met vraag 1c.
                             </label> 
                         </fieldset>
-                        <div id="conditionalVraag1b"> <!-- CONDITIONAL VRAGEN -->
+                        <div class="hiddenContent" id="conditionalVraag1b"> <!-- CONDITIONAL VRAGEN ALLEEN ZICHTBAAR ALS 1b (1E VRAAG) JA IS (HEEFT JAVASCRIPT NODIG) -->
                             <fieldset> <!-- CONDITIONAL VRAAG 1-->
                                 <legend>Hadden de overledene en diens echtgenoot of geregistreerd partner huwelijkse of partnerschapsvoorwaarden laten vastleggen in een notariële akte?</legend>
                                 <label>
-                                    <input type="radio" name="voorwaardenNotarieelVastgelegd" value="nee">
+                                    <input type="radio" class="hideConditionalContent" name="voorwaardenNotarieelVastgelegd" value="nee" data-show-hide="condtionalUpload1b">
                                     Nee
                                 </label>
                                 <label>
-                                    <input type="radio" name="voorwaardenNotarieelVastgelegd" value="ja">
+                                    <input type="radio" class="showConditionalContent" name="voorwaardenNotarieelVastgelegd" value="ja" data-show-hide="condtionalUpload1b">
                                     Ja. Stuur een kopie van de akte mee met de aangifte.
                                 </label>
-                                <!-- Het uploadveld is optioneel en vereist geen pattern of validatie. -->
-                                <label>Upload akte
-                                    <input type="file" name="uploadAkte">
-                                </label>
+                                <fieldset class="hiddenContent" id="condtionalUpload1b"> <!--CONDITIONAL FILE UPLOAD ALLEEN ZICHTBAAR ALS DE VORIGE VRAAG JA IS (HEEFT JAVASCRIPT NODIG)-->
+                                    <label>
+                                        Upload akte
+                                        <input type="file" name="uploadAkte">
+                                    </label>
+                                </fieldset>
                             </fieldset>
                             <fieldset> <!-- CONDITIONAL VRAAG 2-->
                                 <legend>Hadden de overledene en diens partner een finaal verrekenbeding?</legend>
@@ -97,20 +100,22 @@
                                 <input class="hideConditionalContent" type="radio" name="overledenKinderenStatus" value="nee" data-show-hide="conditionalVraag1c">
                                 Nee. Ga verder met vraag 1d.
                             </label>
+                            <!-- CONDITIONAL VRAGEN ALLEEN ZICHTBAAR ALS 1C (1E VRAAG) JA IS (HEEFT JAVASCRIPT NODIG) -->
                             <fieldset class="hiddenContent" id="conditionalVraag1c">
                                 <legend>Is 1 van deze kinderen eerder overleden dan de overledene voor wie u nu aangifte doet?</legend>
                                 <label>
-                                    <input class="showConditionalContent" type="radio" name="overledenKinderenStatus2" value="ja" data-show-hide="conditionalVraag1c.1">
+                                    <input class="showConditionalContent" type="radio" class="showContent" name="overledenKinderenStatus2" value="ja" data-show-hide="conditionalVraag1c.1">
                                     Ja
                                 </label>
                                 <label>
                                     <input class="hideConditionalContent" type="radio" name="overledenKinderenStatus2" value="nee" data-show-hide="conditionalVraag1c.1">
                                     Nee. Ga verder met vraag 1d.
                                 </label>
+                                <!-- CONDITIONAL VRAAG ALLEEN ZICHTBAAR EEN VAN DE KINDEREN EERDER IS OVERLEDEN (HEEFT JAVASCRIPT NODIG) -->
                                 <fieldset class="hiddenContent" id="conditionalVraag1c.1">
                                     <legend>Had dit overleden kind zelf kinderen?</legend>
                                     <label>
-                                        <input type="radio" name="overledenKinderenStatus3" value="ja">
+                                        <input type="radio" class="showContent" name="overledenKinderenStatus3" value="ja">
                                         Ja
                                     </label>
                                     <label>
@@ -125,36 +130,43 @@
                         <legend><span>1d</span>Had de overledene een testament?</legend>
                         <fieldset>
                             <label>
-                                <input class="showConditionalContent" type="radio" name="overledenTestamentStatus" value="ja" data-show-hide="conditionalVraag1d">
+                                <input class="showConditionalContent" type="radio" name="overledenKinderenStatus3" value="ja" data-show-hide="conditionalVraag1d">
                                 Ja
                             </label>
                             <label>
-                                <input class="hideConditionalContent" type="radio" name="overledenTestamentStatus" value="nee" data-show-hide="conditionalVraag1d">
+                                <input class="hideConditionalContent" type="radio" name="overledenKinderenStatus3" value="nee" data-show-hide="conditionalVraag1d">
                                 Nee. Ga verder met vraag 2.
                             </label>
+                            <!-- CONDITIONAL VELDEN ALLEEN ZICHTBAAR ALS 1D (1E VRAAG) JA IS (HEEFT JAVASCRIPT NODIG) -->
                             <fieldset class="hiddenContent" id="conditionalVraag1d">
                                 <legend>Vul de gegevens in van de notaris die het testament heeft opgemaakt en de datum van het testament.</legend>
-                                <label>Protocolnummer notaris
-                                    <input type="text" name="protocolNummerNotaris" pattern="^\d{6}$" title="Voer alstublieft 6 cijfers in">
-                                    <!-- Pattern uitleg: Moet precies 6 cijfers bevatten. -->
-                                </label>
-                                <label>Voorletter(s)*
-                                    <input type="text" name="voorLettersNotaris" pattern="^[A-Z]+(?:\.[A-Z]+)*\.$" title="Vul de voorletters in, gescheiden door punten. Eindig met een punt.">
-                                    <!-- Pattern uitleg: Moet beginnen met een hoofdletter, gevolgd door punten. Voorbeeld: A.B.C. -->
-                                </label>
-                                <label>Achternaam
-                                    <input type="text" name="achterNaamNotaris" pattern="^[A-Za-z\s'-]+$" title="Gebruik alleen letters, spaties, apostrofs of koppeltekens.">
-                                    <!-- Pattern uitleg: Accepteert letters, spaties, apostrofs ('), en koppeltekens (-). -->
-                                </label>
-                                <label>Vestigingsplaats
+                                <label>
+                                    Protocolnummer notaris
+                                    <input type="text" pattern="^\d{6}$" title="Voer alstublieft 6 cijfers in">
+                                    <!-- Pattern uitleg: 6 cijfers -->
+                                    <label>Voorletter(s)*
+                                        <input type="text" id="voorLetters" name="voorLetters" pattern="^[A-Z]([\.][A-Z])*\.?$" title="Voer de voorletters in. Als er meerdere letters zijn, scheid ze met een punt.">
+                                    </label>
+                                    <!-- Pattern uitleg:  "^[A-Z]([\.][A-Z])*\.?$" staat voor een enkele hoofdletter gevolgd door nul of meer combinaties van een punt en een andere hoofdletter, met een optionele punt aan het einde. -->                                    
+                                    <label>Tussenvoegsel(s)
+                                        <input type="text" id="tussenVoegsel" name="tussenVoegsel" pattern="^[a-z\s]*$" title="Gebruik alleen kleine letters en spaties.">
+                                    </label>
+                                    <!-- Pattern uitleg: "^[a-z\s]*$" staat voor nul of meer kleine letters of spaties. -->
+                                    <label>Achternaam
+                                        <input type="text" id="achterNaam" name="achterNaam" pattern="^[A-Za-z\s'-]+$" title="Gebruik alleen letters, spaties, apostrofs of koppeltekens.">
+                                    </label>
+                                    <!-- Pattern uitleg: "^[A-Za-z\s'-]+$" staat voor een of meer letters (zowel hoofdletters als kleine letters), spaties, apostrofs ('), of koppeltekens (-). -->
+                                <label>
+                                    Vestigingsplaats
                                     <input type="text" name="vestigingsPlaatsNotaris">
                                 </label>
-                                <label>Datum van het testament of van de laatste wijziging
-                                    <input type="date" name="datumTestament">
+                                <label>
+                                    Datum van het testament of van de laatste wijziging
+                                    <input type="date">
                                 </label>
                             </fieldset>
                         </fieldset>
-                    </fieldset> <!--EINDE VRAAG 1D-->                    
+                    </fieldset> <!--EINDE VRAAG 1D-->
                 </fieldset> <!--EINDE VRAAG 1-->
             </section> <!--EINDE VRAAG 1 SECTION-->
             <input class="button" type="submit" value="Volgende"> <!--VOLGENDE BUTTON-->
