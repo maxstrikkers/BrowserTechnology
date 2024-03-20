@@ -32,7 +32,7 @@
                             <fieldset class="hiddenContent" id="conditionalVraag3aYes"> <!--CONDITIONAL OPTIE ALLEEN ALS IK BEN EXECUTEUR JA IS-->
                                 <label>
                                     Geef aan voor hoeveel verkrijgers u aangifte doet. Bent u zelf ook verkrijger? Tel uzelf dan ook mee.
-                                    <input type="number">
+                                    <input type="number" min="1">
                                     <p class="hiddenContent"> Ga naar vraag 3c.</p>
                                 </label>
                             </fieldset> <!--EINDE CONDITIONAL OPTIE-->
@@ -51,7 +51,7 @@
                                 <fieldset class="hiddenContent" id="aantalVerkrijgersInclusiefAangever"> <!--CONDITIONAL OPTIE HIERVOOR JA IS (HEEFT JAVASCRIPT NODIG)-->
                                     <label>
                                         Geef aan voor hoeveel verkrijgers u aangifte doet. Tel uzelf ook mee.
-                                        <input type="number">
+                                        <input type="number" min="1">
                                     </label>
                                 </fieldset>
                                 <label>
@@ -61,7 +61,7 @@
                                 <fieldset class="hiddenContent" id="totaalAantalBeneficianten"> <!--CONDITIONAL OPTIE HIERVOOR JA IS (HEEFT JAVASCRIPT NODIG)-->
                                     <label>
                                         Geef het aantal personen en/of instellingen aan die iets krijgen uit de nalatenschap (verkrijgers). Tel uzelf ook mee.
-                                        <input type="number">
+                                        <input type="number" min="1">
                                     </label>
                                 </fieldset>
                                 <label>
@@ -75,7 +75,7 @@
                                 <fieldset class="hiddenContent" id="voorHoeveelVerkrijgersAangifte"> <!--CONDITIONAL OPTIE HIERVOOR JA IS (HEEFT JAVASCRIPT NODIG)-->
                                     <label>
                                         Geef aan voor hoeveel verkrijgers u aangifte doet.
-                                        <input type="number">
+                                        <input type="number" min=1>
                                     </label>
                                 </fieldset> <!--EINDE CONDITIONAL OPTIE-->
                             </fieldset> <!--EINDE CONDITIONAL OPTIE-->
@@ -107,17 +107,21 @@
                                     </legend>
                                     <label>
                                         Burgerservicenummer/RSIN
-                                        <input type="text">
+                                        <input type="text" name="bsnRsin" pattern="\d{9}" title="Voer een 9-cijferig BSN of RSIN in.">
                                     </label>
+                                    <!-- Pattern uitleg: "\d{9}" staat voor een reeks van exact 9 cijfers. -->
                                     <label>Voorletter(s)*
-                                        <input type="text" id="voorLetters" name="voorLetters" required>
+                                        <input type="text" id="voorLetters" name="voorLetters" pattern="^[A-Z]([\.][A-Z])*\.?$" title="Voer de voorletters in. Als er meerdere letters zijn, scheid ze met een punt.">
                                     </label>
+                                    <!-- Pattern uitleg:  "^[A-Z]([\.][A-Z])*\.?$" staat voor een enkele hoofdletter gevolgd door nul of meer combinaties van een punt en een andere hoofdletter, met een optionele punt aan het einde. -->                                    
                                     <label>Tussenvoegsel(s)
-                                        <input type="text" id="tussenVoegsel" name="tussenVoegsel">
+                                        <input type="text" id="tussenVoegsel" name="tussenVoegsel" pattern="^[a-z\s]*$" title="Gebruik alleen kleine letters en spaties.">
                                     </label>
+                                    <!-- Pattern uitleg: "^[a-z\s]*$" staat voor nul of meer kleine letters of spaties. -->
                                     <label>Achternaam
-                                        <input type="text" id="achterNaam" name="achterNaam">
+                                        <input type="text" id="achterNaam" name="achterNaam" pattern="^[A-Za-z\s'-]+$" title="Gebruik alleen letters, spaties, apostrofs of koppeltekens.">
                                     </label>
+                                    <!-- Pattern uitleg: "^[A-Za-z\s'-]+$" staat voor een of meer letters (zowel hoofdletters als kleine letters), spaties, apostrofs ('), of koppeltekens (-). -->
                                     <fieldset>
                                         <legend>Krijgt deze verkrijger waarvoor u geen aangifte doet het hele vermogen?</legend>
                                         <label>
@@ -147,17 +151,22 @@
                                     </legend>
                                     <label>
                                         Burgerservicenummer/RSIN
-                                        <input type="text">
+                                        <input type="text" name="bsnRsin" pattern="\d{9}" title="Voer een 9-cijferig BSN of RSIN in.">
                                     </label>
+                                    <!-- Pattern uitleg: "\d{9}" staat voor een reeks van exact 9 cijfers. -->
                                     <label>Voorletter(s)*
-                                        <input type="text" id="voorLetters" name="voorLetters" required>
+                                        <input type="text" id="voorLetters" name="voorLetters" pattern="^[A-Z]([\.][A-Z])*\.?$" title="Voer de voorletters in. Als er meerdere letters zijn, scheid ze met een punt.">
                                     </label>
+                                    <!-- Pattern uitleg:  "^[A-Z]([\.][A-Z])*\.?$" staat voor een enkele hoofdletter gevolgd door nul of meer combinaties van een punt en een andere hoofdletter, met een optionele punt aan het einde. -->                                    
                                     <label>Tussenvoegsel(s)
-                                        <input type="text" id="tussenVoegsel" name="tussenVoegsel">
+                                        <input type="text" id="tussenVoegsel" name="tussenVoegsel" pattern="^[a-z\s]*$" title="Gebruik alleen kleine letters en spaties.">
                                     </label>
+                                    <!-- Pattern uitleg: "^[a-z\s]*$" staat voor nul of meer kleine letters of spaties. -->
                                     <label>Achternaam
-                                        <input type="text" id="achterNaam" name="achterNaam">
+                                        <input type="text" id="achterNaam" name="achterNaam" pattern="^[A-Za-z\s'-]+$" title="Gebruik alleen letters, spaties, apostrofs of koppeltekens.">
                                     </label>
+                                    <!-- Pattern uitleg: "^[A-Za-z\s'-]+$" staat voor een of meer letters (zowel hoofdletters als kleine letters), spaties, apostrofs ('), of koppeltekens (-). -->
+                                    <fieldset>
                                     <fieldset>
                                         <legend>Krijgt deze verkrijger waarvoor u geen aangifte doet het hele vermogen?</legend>
                                         <label>
@@ -189,15 +198,24 @@
                                         Burgerservicenummer/RSIN
                                         <input type="text">
                                     </label>
+                                    <label>
+                                        Burgerservicenummer/RSIN
+                                        <input type="text" name="bsnRsin" pattern="\d{9}" title="Voer een 9-cijferig BSN of RSIN in.">
+                                    </label>
+                                    <!-- Pattern uitleg: "\d{9}" staat voor een reeks van exact 9 cijfers. -->
                                     <label>Voorletter(s)*
-                                        <input type="text" id="voorLetters" name="voorLetters" required>
+                                        <input type="text" id="voorLetters" name="voorLetters" pattern="^[A-Z]([\.][A-Z])*\.?$" title="Voer de voorletters in. Als er meerdere letters zijn, scheid ze met een punt.">
                                     </label>
+                                    <!-- Pattern uitleg:  "^[A-Z]([\.][A-Z])*\.?$" staat voor een enkele hoofdletter gevolgd door nul of meer combinaties van een punt en een andere hoofdletter, met een optionele punt aan het einde. -->                                    
                                     <label>Tussenvoegsel(s)
-                                        <input type="text" id="tussenVoegsel" name="tussenVoegsel">
+                                        <input type="text" id="tussenVoegsel" name="tussenVoegsel" pattern="^[a-z\s]*$" title="Gebruik alleen kleine letters en spaties.">
                                     </label>
+                                    <!-- Pattern uitleg: "^[a-z\s]*$" staat voor nul of meer kleine letters of spaties. -->
                                     <label>Achternaam
-                                        <input type="text" id="achterNaam" name="achterNaam">
+                                        <input type="text" id="achterNaam" name="achterNaam" pattern="^[A-Za-z\s'-]+$" title="Gebruik alleen letters, spaties, apostrofs of koppeltekens.">
                                     </label>
+                                    <!-- Pattern uitleg: "^[A-Za-z\s'-]+$" staat voor een of meer letters (zowel hoofdletters als kleine letters), spaties, apostrofs ('), of koppeltekens (-). -->
+                                    <fieldset>
                                     <fieldset>
                                         <legend>Krijgt deze verkrijger waarvoor u geen aangifte doet het hele vermogen?</legend>
                                         <label>
@@ -229,15 +247,24 @@
                                         Burgerservicenummer/RSIN
                                         <input type="text">
                                     </label>
+                                    <label>
+                                        Burgerservicenummer/RSIN
+                                        <input type="text" name="bsnRsin" pattern="\d{9}" title="Voer een 9-cijferig BSN of RSIN in.">
+                                    </label>
+                                    <!-- Pattern uitleg: "\d{9}" staat voor een reeks van exact 9 cijfers. -->
                                     <label>Voorletter(s)*
-                                        <input type="text" id="voorLetters" name="voorLetters" required>
+                                        <input type="text" id="voorLetters" name="voorLetters" pattern="^[A-Z]([\.][A-Z])*\.?$" title="Voer de voorletters in. Als er meerdere letters zijn, scheid ze met een punt.">
                                     </label>
+                                    <!-- Pattern uitleg:  "^[A-Z]([\.][A-Z])*\.?$" staat voor een enkele hoofdletter gevolgd door nul of meer combinaties van een punt en een andere hoofdletter, met een optionele punt aan het einde. -->                                    
                                     <label>Tussenvoegsel(s)
-                                        <input type="text" id="tussenVoegsel" name="tussenVoegsel">
+                                        <input type="text" id="tussenVoegsel" name="tussenVoegsel" pattern="^[a-z\s]*$" title="Gebruik alleen kleine letters en spaties.">
                                     </label>
+                                    <!-- Pattern uitleg: "^[a-z\s]*$" staat voor nul of meer kleine letters of spaties. -->
                                     <label>Achternaam
-                                        <input type="text" id="achterNaam" name="achterNaam">
+                                        <input type="text" id="achterNaam" name="achterNaam" pattern="^[A-Za-z\s'-]+$" title="Gebruik alleen letters, spaties, apostrofs of koppeltekens.">
                                     </label>
+                                    <!-- Pattern uitleg: "^[A-Za-z\s'-]+$" staat voor een of meer letters (zowel hoofdletters als kleine letters), spaties, apostrofs ('), of koppeltekens (-). -->
+                                    <fieldset>
                                     <fieldset>
                                         <legend>Krijgt deze verkrijger waarvoor u geen aangifte doet het hele vermogen?</legend>
                                         <label>
@@ -277,7 +304,7 @@
                     </fieldset> <!--EINDE VRAAG 3C FIELDSET-->
                 </fieldset> <!--EINDE VRAAG 3-->
             </section> <!--EINDE VRAAG 3 SECTION-->
-            <input type="submit" value="Verstuur aangifte"> <!--SUBMIT BUTTON-->
+            <input class='button' type="submit" value="Verstuur aangifte"> <!--SUBMIT BUTTON-->
         </form>
     </section>
     <script src="./javascript/script.js"></script>

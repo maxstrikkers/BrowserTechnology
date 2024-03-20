@@ -29,35 +29,36 @@
                             <input type="radio" class="showAndHideConditionalContent" name="infoNotarisGemachtigde" data-show="bsnRsinGemachtigde" data-hide="beconNummerAdviseur,protocolNummerNotaris">
                             Burgerservicenummer/ RSIN gemachtigde
                         </label>
-                            <input class="hiddenContent" id="bsnRsinGemachtigde" type="number" name="bsnGemachtigde" required>
+                        <input class="hiddenContent" id="bsnRsinGemachtigde" type="text" name="bsnGemachtigde" pattern="\d{9}" title="BSN/RSIN moet bestaan uit 9 cijfers.">
                         <label>
                             <input type="radio" class="showAndHideConditionalContent" name="infoNotarisGemachtigde" data-show="beconNummerAdviseur" data-hide="bsnRsinGemachtigde,protocolNummerNotaris">
                             Beconnummer adviseur
                         </label>
-                            <input class="hiddenContent" id="beconNummerAdviseur" type="number" name="beconNummberAdviseur" required>
+                        <input class="hiddenContent" id="beconNummerAdviseur" type="text" name="beconNummerAdviseur" pattern="\d{6,7}" title="Beconnummer moet bestaan uit 6 of 7 cijfers.">
                         <label>
                             <input type="radio" class="showAndHideConditionalContent" name="infoNotarisGemachtigde" data-show="protocolNummerNotaris" data-hide="bsnRsinGemachtigde,beconNummerAdviseur">
                             Protocolnummer notaris
                         </label>
-                            <input class="hiddenContent" id="protocolNummerNotaris" type="number" name="protocolNummerNotaris" required>
+                        <input class="hiddenContent" id="protocolNummerNotaris" type="text" name="protocolNummerNotaris" pattern="\d{6}" title="Protocolnummer moet bestaan uit 6 cijfers.">
                     </fieldset> <!--EINDE VRAAG 2A-->
+                    
                     <fieldset> <!--FIELDSET VRAAG 2B-->
                         <legend><span>2b</span>Gegevens gemachtigde</legend>
                         <label>
                             Voorletter(s)
-                            <input type="text">
+                            <input type="text" name="voorlettersGemachtigde" pattern="^[A-Z]+(?:\.[A-Z]+)*\.$" title="Vul de voorletters in, gescheiden door punten. Eindig met een punt.">
                         </label>
                         <label>
-                            tussenvoegsel(s)
-                            <input type="text">
+                            Tussenvoegsel(s)
+                            <input type="text" name="tussenvoegselsGemachtigde">
                         </label>
                         <label>
-                            achternaam
-                            <input type="text">
+                            Achternaam
+                            <input type="text" name="achternaamGemachtigde" pattern="^[A-Za-z\s'-]+$" title="Gebruik alleen letters, spaties, apostrofs of koppeltekens.">
                         </label>
                         <label>
                             Naam instelling (bijvoorbeeld een notariskantoor)
-                            <input type="text">
+                            <input type="text" name="naamInstelling">
                         </label>
                         <label>
                             <input class="showAndHideConditionalContent" type="radio" name="locatieAdres" data-show="adresInNederland" data-hide="adresInBuitenland">
@@ -67,70 +68,51 @@
                             <input class="showAndHideConditionalContent" type="radio" name="locatieAdres" data-show="adresInBuitenland" data-hide="adresInNederland">
                             Adres in het buitenland
                         </label>
-                        <!--CONDITIONAL VRAGEN ALLEEN ALS OF ADRES IN NEDERLAND OF ADRES IN HET BUITENLAND AAN STAAT (HEEFT JAVASCRIPT NODI)-->
+                        <!--CONDITIONAL VRAGEN ALLEEN ALS OF ADRES IN NEDERLAND OF ADRES IN HET BUITENLAND AAN STAAT (HEEFT JAVASCRIPT NODIG)-->
                         <fieldset class="hiddenContent" id="adresInNederland"> <!--ADRES IN NEDERLAND FIELDSET-->
-                            <legend>
-                                Adres in Nederland
-                            </legend>
-                            <label>
-                                Straat
-                                <input type="text">
+                            <legend>Adres in Nederland</legend>
+                            <label>Straat
+                                <input type="text" name="straatNederland">
                             </label>
-                            <label>
-                                Huisnummer
-                                <input type="number">
+                            <label>Huisnummer
+                                <input type="number" name="huisnummerNederland">
                             </label>
-                            <label>
-                                Toevoeging
-                                <input type="text">
+                            <label>Toevoeging
+                                <input type="text" name="toevoegingNederland">
                             </label>
-                            <label>
-                                Postcode
-                                <input type="text" pattern="^\d{4}[a-zA-Z]{2}$" title="Voer alstublieft een postcode in (4 cijfers gevolgd door 2 letters)">
+                            <label>Postcode
+                                <input type="text" name="postcodeNederland" pattern="^\d{4}[a-zA-Z]{2}$" title="Voer alstublieft een postcode in (4 cijfers gevolgd door 2 letters)">
                             </label>
-                            <label>
-                                Woonplaats
-                                <input type="text">
+                            <label>Woonplaats
+                                <input type="text" name="woonplaatsNederland">
                             </label>
                         </fieldset> <!--EINDE ADRES IN NEDERLAND FIELDSET-->
                         <fieldset class="hiddenContent" id="adresInBuitenland"> <!--ADRES IN HET BUITENLAND FIELDSET-->
-                            <legend>
-                                Adres in het buitenland
-                            </legend>
-                                <label>
-                                    Straat
-                                    <input type="text">
-                                </label>
-                                <label>
-                                    Huisnummer
-                                    <input type="number">
-                                </label>
-                                <label>
-                                    Postcode
-                                    <input type="text" pattern="^\d{4}[a-zA-Z]{2}$" title="Voer alstublieft een postcode in (4 cijfers gevolgd door 2 letters)">
-                                </label>
-                                <label>
-                                    Plaats
-                                    <input type="text">
-                                </label>
-                                <label>
-                                    Landcode
-                                    <input type="text">
-                                </label>
-                                <label>
-                                    Landcode
-                                    <input type="text">
-                                </label>
-                                <label>
-                                    Telefoonnummer
-                                    <input type="tel" pattern="^\d{10}$" title="Voer alstublieft een telefoonnummer in met 10 cijfers">
-                                </label>
-                                <label>
-                                    E-mailadres
-                                    <input type="email">
-                                </label>
+                            <legend>Adres in het buitenland</legend>
+                            <label>Straat
+                                <input type="text" name="straatBuitenland">
+                            </label>
+                            <label>Huisnummer
+                                <input type="number" name="huisnummerBuitenland">
+                            </label>
+                            <label>Postcode
+                                <input type="text" name="postcodeBuitenland">
+                            </label>
+                            <label>Plaats
+                                <input type="text" name="plaatsBuitenland">
+                            </label>
+                            <label>Land
+                                <input type="text" name="landBuitenland">
+                            </label>
+                            <label>Telefoonnummer
+                                <input type="tel" name="telefoonnummerBuitenland" pattern="^\+?\d{10,15}$" title="Voer alstublieft een telefoonnummer in met 10 tot 15 cijfers, optioneel beginnend met een '+'.">
+                            </label>
+                            <label>E-mailadres
+                                <input type="email" name="emailBuitenland">
+                            </label>
                         </fieldset> <!--EINDE ADRES IN HET BUITENLAND FIELDSET-->
-                    </fieldset> <!--EINDE VRAAG 2A-->
+                    </fieldset> <!--EINDE VRAAG 2B-->
+                    
                 </fieldset> <!-- EINDE VRAAG 2-->
             </section> <!--EINDE VRAAG 2 SECTION-->
             <input class="button" type="submit" value="Volgende"> <!--SUBMIT BUTTON-->
