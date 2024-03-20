@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Erfbelasting 2023</title>
+    <link rel="stylesheet" type="text/css" href="./style/style.css">
+</head>
+<body>
+    <header class="logoBelastingdienstSection">
+        <img src="./assets/img/logoBelastingdienst.svg" alt="Belastingdienst logo">
+        <nav>
+            <ul>
+                <li><a href="index.html">i</a></li>
+                <li><a href="vraag1.html">1</a></li>
+                <li><a href="vraag2.html">2</a></li>
+                <li><a class="active" href="vraag3.html">3</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <form>
+            <section> <!--VRAAG 3 SECTION-->
+                <h2>3. Voor wie doet u aangifte?</h2>
+                <fieldset><!--FIELDSET VRAAG 3-->
+                    <fieldset> <!--FIELDSET VRAAG 3A-->
+                        <legend><span>3a</span>Heeft de overledene in het testament een executeur aangewezen om de erfenis af te handelen? Dan moet de executeur aangifte doen voor alle personen en/of instellingen die iets krijgen uit de nalatenschap (verkrijgers).</legend>
+                        <fieldset>
+                            <label>
+                                <input class="showAndHideConditionalContent" type="radio" name="executeurYesOrNo" data-show="conditionalVraag3aYes" data-hide="conditionalVraag3aNo,conditionalVraag3b">
+                                Ik ben executeur en doe aangifte voor alle personen en/of instellingen die iets krijgen uit de nalatenschap (verkrijgers).
+                            </label>
+                            <fieldset class="hiddenContent" id="conditionalVraag3aYes"> <!--CONDITIONAL OPTIE ALLEEN ALS IK BEN EXECUTEUR JA IS-->
+                                <label>
+                                    Geef aan voor hoeveel verkrijgers u aangifte doet. Bent u zelf ook verkrijger? Tel uzelf dan ook mee.
+                                    <input type="number">
+                                    <p class="hiddenContent"> Ga naar vraag 3c.</p>
+                                </label>
+                            </fieldset> <!--EINDE CONDITIONAL OPTIE-->
+                            <label>
+                                <input class="showAndHideConditionalContent" type="radio" name="executeurYesOrNo" data-show="conditionalVraag3aNo,conditionalVraag3b" data-hide="conditionalVraag3aYes">
+                                Ik ben geen executeur
+                            </label>
+                            <fieldset class="hiddenContent" id="conditionalVraag3aNo"> <!--CONDITIONAL OPTIE ALLEEN ALS IK BEN EXECUTEUR NEE IS-->
+                                <legend>
+                                    Is er geen executeur aangewezen? Kruis dan aan welke situatie voor u geldt.
+                                </legend>
+                                <label>
+                                    <input class="showAndHideConditionalContent" type="radio" name="situatieGeenExecuteur" data-show="aantalVerkrijgersInclusiefAangever" data-hide="totaalAantalBeneficianten,voorHoeveelVerkrijgersAangifte">
+                                    Ik ben erfgenaam en ben gemachtigd om aangifte te doen voor meerdere personen en/of instellingen die iets krijgen uit de nalatenschap (verkrijgers).
+                                </label>
+                                <fieldset class="hiddenContent" id="aantalVerkrijgersInclusiefAangever"> <!--CONDITIONAL OPTIE HIERVOOR JA IS (HEEFT JAVASCRIPT NODIG)-->
+                                    <label>
+                                        Geef aan voor hoeveel verkrijgers u aangifte doet. Tel uzelf ook mee.
+                                        <input type="number">
+                                    </label>
+                                </fieldset>
+                                <label>
+                                    <input class="showAndHideConditionalContent" type="radio" name="situatieGeenExecuteur" data-show="totaalAantalBeneficianten" data-hide="aantalVerkrijgersInclusiefAangever,voorHoeveelVerkrijgersAangifte">
+                                    Ik ben erfgenaam en doe samen met andere erfgenamen aangifte.
+                                </label>
+                                <fieldset class="hiddenContent" id="totaalAantalBeneficianten"> <!--CONDITIONAL OPTIE HIERVOOR JA IS (HEEFT JAVASCRIPT NODIG)-->
+                                    <label>
+                                        Geef het aantal personen en/of instellingen aan die iets krijgen uit de nalatenschap (verkrijgers). Tel uzelf ook mee.
+                                        <input type="number">
+                                    </label>
+                                </fieldset>
+                                <label>
+                                    <input class="hideConditionalContent" type="radio" name="situatieGeenExecuteur" data-show-hide="aantalVerkrijgersInclusiefAangever,totaalAantalBeneficianten,voorHoeveelVerkrijgersAangifte">
+                                    Ik ben erfgenaam en doe alleen aangifte voor mijzelf.
+                                </label>
+                                <label>
+                                    <input class="showAndHideConditionalContent" type="radio" name="situatieGeenExecuteur" data-show="voorHoeveelVerkrijgersAangifte" data-hide="aantalVerkrijgersInclusiefAangever,totaalAantalBeneficianten">
+                                    Ik ben geen erfgenaam, maar ben gemachtigd om aangifte te doen.
+                                </label>
+                                <fieldset class="hiddenContent" id="voorHoeveelVerkrijgersAangifte"> <!--CONDITIONAL OPTIE HIERVOOR JA IS (HEEFT JAVASCRIPT NODIG)-->
+                                    <label>
+                                        Geef aan voor hoeveel verkrijgers u aangifte doet.
+                                        <input type="number">
+                                    </label>
+                                </fieldset> <!--EINDE CONDITIONAL OPTIE-->
+                            </fieldset> <!--EINDE CONDITIONAL OPTIE-->
+                        </fieldset>
+                    </fieldset> <!--EINDE VRAAG 3A FIELDSET-->
+                    <fieldset class="hiddenContent" id="conditionalVraag3b"> <!--FIELDSET VRAAG 3B ALLEEN ZICHTBAAR ALS BIJ 3A IK BEN EXECUTEUR AAN STAAT-->
+                        <legend><span>3b</span>Voor wie doet u geen aangifte?</legend>
+                        <fieldset>
+                            <legend>
+                                Zijn er verkrijgers voor wie u geen aangifte doet?
+                            </legend>
+                            <label>
+                                <input class="hideConditionalContent" type="radio" name="zijnErVerkrijgers" data-show-hide="verkrijgerInfo">
+                                Nee. Ga naar vraag 3c.
+                            </label>
+                            <label>
+                                <input class="showConditionalContent" type="radio" name="zijnErVerkrijgers" data-show-hide="verkrijgerInfo">
+                                Ja
+                            </label>
+                            <fieldset class="hiddenContent" id="verkrijgerInfo">
+                                <label>
+                                    <input type="number" class="generateAmountOfContent" data-generate="verkrijgers">
+                                </label>
+                                
+                                <legend>Vul hieronder de gegevens in van de verkrijgers waarvoor u geen aangifte doet. Gaat het om een instelling? Vul dan de naam van de instelling in bij ‘achternaam’. Het invullen van een bsn is niet verplicht, maar wel handig voor ons. </legend>
+                                <fieldset id="verkrijgers"> <!--CONDITIONAL VRAGEN ALLEEN ZICHTBAAR ALS ER VERKRIJGERS ZIJN-->
+                                    <legend>
+                                        Verkrijger 1
+                                    </legend>
+                                    <label>
+                                        Burgerservicenummer/RSIN
+                                        <input type="text">
+                                    </label>
+                                    <label>Voorletter(s)*
+                                        <input type="text" id="voorLetters" name="voorLetters" required>
+                                    </label>
+                                    <label>Tussenvoegsel(s)
+                                        <input type="text" id="tussenVoegsel" name="tussenVoegsel">
+                                    </label>
+                                    <label>Achternaam
+                                        <input type="text" id="achterNaam" name="achterNaam">
+                                    </label>
+                                    <fieldset>
+                                        <legend>Krijgt deze verkrijger waarvoor u geen aangifte doet het hele vermogen?</legend>
+                                        <label>
+                                            <input type="radio" name="krijgtVerkrijgerHeleVermogen1" value="ja">
+                                            Ja
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="krijgtVerkrijgerHeleVermogen1" value="nee">
+                                            Nee
+                                        </label>
+                                    </fieldset>
+                                    <fieldset>
+                                        <legend>Doet deze verkrijger een beroep op diens legitieme portie (wettelijke erfdeel)?</legend>
+                                        <label>
+                                            <input type="radio" name="doetVerkrijgerBeroep1" value="ja">
+                                            Ja
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="doetVerkrijgerBeroep1" value="nee">
+                                            Nee
+                                        </label>
+                                    </fieldset>
+                                </fieldset> <!--EINDE VERKRIJGER-->
+                                <fieldset> <!--VERKRIJGER 2-->
+                                    <legend>
+                                        Verkrijger 2
+                                    </legend>
+                                    <label>
+                                        Burgerservicenummer/RSIN
+                                        <input type="text">
+                                    </label>
+                                    <label>Voorletter(s)*
+                                        <input type="text" id="voorLetters" name="voorLetters" required>
+                                    </label>
+                                    <label>Tussenvoegsel(s)
+                                        <input type="text" id="tussenVoegsel" name="tussenVoegsel">
+                                    </label>
+                                    <label>Achternaam
+                                        <input type="text" id="achterNaam" name="achterNaam">
+                                    </label>
+                                    <fieldset>
+                                        <legend>Krijgt deze verkrijger waarvoor u geen aangifte doet het hele vermogen?</legend>
+                                        <label>
+                                            <input type="radio" name="krijgtVerkrijgerHeleVermogen2" value="ja">
+                                            Ja
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="krijgtVerkrijgerHeleVermogen2" value="nee">
+                                            Nee
+                                        </label>
+                                    </fieldset>
+                                    <fieldset>
+                                        <legend>Doet deze verkrijger een beroep op diens legitieme portie (wettelijke erfdeel)?</legend>
+                                        <label>
+                                            <input type="radio" name="doetVerkrijgerBeroep12" value="ja">
+                                            Ja
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="doetVerkrijgerBeroep2" value="nee">
+                                            Nee
+                                        </label>
+                                    </fieldset>
+                                </fieldset> <!--EINDE VERKRIJGER-->
+                                <fieldset> <!--VERKRIJGER 3-->
+                                    <legend>
+                                        Verkrijger 3
+                                    </legend>
+                                    <label>
+                                        Burgerservicenummer/RSIN
+                                        <input type="text">
+                                    </label>
+                                    <label>Voorletter(s)*
+                                        <input type="text" id="voorLetters" name="voorLetters" required>
+                                    </label>
+                                    <label>Tussenvoegsel(s)
+                                        <input type="text" id="tussenVoegsel" name="tussenVoegsel">
+                                    </label>
+                                    <label>Achternaam
+                                        <input type="text" id="achterNaam" name="achterNaam">
+                                    </label>
+                                    <fieldset>
+                                        <legend>Krijgt deze verkrijger waarvoor u geen aangifte doet het hele vermogen?</legend>
+                                        <label>
+                                            <input type="radio" name="krijgtVerkrijgerHeleVermogen3" value="ja">
+                                            Ja
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="krijgtVerkrijgerHeleVermogen3" value="nee">
+                                            Nee
+                                        </label>
+                                    </fieldset>
+                                    <fieldset>
+                                        <legend>Doet deze verkrijger een beroep op diens legitieme portie (wettelijke erfdeel)?</legend>
+                                        <label>
+                                            <input type="radio" name="doetVerkrijgerBeroep3" value="ja">
+                                            Ja
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="doetVerkrijgerBeroep3" value="nee">
+                                            Nee
+                                        </label>
+                                    </fieldset>
+                                </fieldset> <!--EINDE VERKRIJGER-->
+                                <fieldset> <!--VERKRIJGER 4-->
+                                    <legend>
+                                        Verkrijger 4
+                                    </legend>
+                                    <label>
+                                        Burgerservicenummer/RSIN
+                                        <input type="text">
+                                    </label>
+                                    <label>Voorletter(s)*
+                                        <input type="text" id="voorLetters" name="voorLetters" required>
+                                    </label>
+                                    <label>Tussenvoegsel(s)
+                                        <input type="text" id="tussenVoegsel" name="tussenVoegsel">
+                                    </label>
+                                    <label>Achternaam
+                                        <input type="text" id="achterNaam" name="achterNaam">
+                                    </label>
+                                    <fieldset>
+                                        <legend>Krijgt deze verkrijger waarvoor u geen aangifte doet het hele vermogen?</legend>
+                                        <label>
+                                            <input type="radio" name="krijgtVerkrijgerHeleVermogen4" value="ja">
+                                            Ja
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="krijgtVerkrijgerHeleVermogen4" value="nee">
+                                            Nee
+                                        </label>
+                                    </fieldset>
+                                    <fieldset>
+                                        <legend>Doet deze verkrijger een beroep op diens legitieme portie (wettelijke erfdeel)?</legend>
+                                        <label>
+                                            <input type="radio" name="doetVerkrijgerBeroep4" value="ja">
+                                            Ja
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="doetVerkrijgerBeroep4" value="nee">
+                                            Nee
+                                        </label>
+                                    </fieldset>
+                                </fieldset> <!--EINDE VERKRIJGER-->
+                            </fieldset>
+                        </fieldset>
+                    </fieldset> <!--EINDE VRAAG 3B FIELDSET-->
+                    <fieldset><!--FIELDSET VRAAG 3C-->
+                        <legend><span>3c</span>Naar wie wilt u dat wij de aanslag erfbelasting sturen?</legend>
+                        <label>
+                            <input type="radio" name="naarWieAanslagErfbelasting">
+                            Stuur naar iedere verkrijger van (een deel van) de erfenis een eigen belastingaanslag.
+                        </label>
+                        <label>
+                            <input type="radio" name="naarWieAanslagErfbelasting">
+                            Stuur de belastingaanslag(en) naar de executeur of naar de erfgenaam die ook namens andere personen en/of instellingen die iets krijgen uit de nalatenschap (verkrijgers) aangifte heeft gedaan; dit mag ook de gemachtigde zijn. Wij sturen de aanslag(en) naar het adres dat u bij vraag 2 hebt ingevuld.
+                        </label>
+                    </fieldset> <!--EINDE VRAAG 3C FIELDSET-->
+                </fieldset> <!--EINDE VRAAG 3-->
+            </section> <!--EINDE VRAAG 3 SECTION-->
+            <input type="submit" value="Verstuur aangifte"> <!--SUBMIT BUTTON-->
+        </form>
+    </section>
+    <script src="./javascript/script.js"></script>
+</body>
+</html>
+
+
+
+<!-- ITEMS TO FIX -->
+<!-- VALIDATION -->
+<!-- VRAAG 2B: ALLE INPUT TYPES EEN ID OFZO GEVEN EN EEN PATTERN GEVEN VOOR SOMMIGE ITEMS ZOALS LANDCODE-->
+<!-- CHECK WAT REQUIRED MOET ZIJN EN LET OP MET CONDITIONAL DINGEN -->
+<!--TOELICHTING FIXEN DUS INFORMATIE OVER DE VRAAG, MISSCHIEN ONDERAAN ZETTEN EN DAN DR NAARTOE LINKEN OFZO-->

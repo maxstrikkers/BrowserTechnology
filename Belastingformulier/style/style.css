@@ -1,0 +1,196 @@
+
+@font-face {
+    font-family: "RijksOverheidSerifRegular";
+    src: url('./fonts/rijksoverheidserif-regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "RijksOverheidSerifItalic";
+    src: url('./fonts/rijksoverheidserif-italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "RijksOverheidSansTextRegular";
+    src: url('./fonts/rijksoverheidsanstext-regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "RijksOverheidSansHeadingBold";
+    src: url('./fonts/rijksoverheidsansheading-bold.ttf') format('truetype');
+}
+
+:root{
+    --white: #fff;
+    --black: #000;
+    --lightblue: #8fcae7;
+    --gray: #f3f3f3;
+    --dark-gray: #696969;
+    --red: #d52b1e;
+    --display-state: block;
+}
+
+body{
+    font-family: "RijksOverheidSerifRegular", fallback, sans-serif;
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ZET DE HIDDEN CONTENT STANDAARD OP BLOCK. DIT WORD LATER VERANDERD IN JAVASCRIPT */
+.hiddenContent{
+    display: var(--display-state);
+}
+
+.logoBelastingdienstSection{
+    display: flex;
+    justify-content: center;
+    top: 0;
+    background-color: var(--white);
+    position: relative;
+}
+
+.logoBelastingdienstSection img{
+    height: 5rem;
+}
+
+/* nav{
+    background-color: orange;
+} */
+
+nav > ul{
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+li > a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 4rem;
+    margin: 0.5rem;
+    color: var(--black);
+    text-decoration: none;
+    border: 0.2rem solid var(--black)
+
+}
+
+li > .active{
+    background-color: var(--black);
+    color: var(--white)
+}
+
+section{
+    background-color: var(--gray);
+    padding: 1rem;
+    margin: 1rem 0 1rem 0;
+}
+
+fieldset{
+    border:none;
+    background-color: var(--white);
+    padding: 1rem;
+}
+
+fieldset fieldset{
+    padding:0;
+}
+
+legend{
+    padding: 0.5rem;
+    background: white;
+    display: block;
+    width: 100%;
+}
+
+.button {
+    font-family: "RijksOverheidSansHeadingBold", fallback, sans-serif;
+    background-color: var(--black);
+    color: var(--white);
+    padding: 1rem 4rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 0.4em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.button:hover {
+    background-color: var(--dark-gray);
+}
+
+
+h2{
+    font-family: "RijksOverheidSansHeadingBold", fallback, sans-serif;
+    background-color: var(--black);
+    color: var(--white);
+    padding: 0.5rem;
+}
+
+h4{
+    font-family: "RijksOverheidSansHeadingBold", fallback, sans-serif;
+}
+
+h5{
+    font-family: "RijksOverheidSansHeadingBold", fallback, sans-serif;
+    background-color: var(--black);
+    display: inline-block;
+    color: var(--white);
+    padding: 0.5rem;
+    position: relative;
+}
+
+/* SELECTEERD ALLEEN HET EERSTE KIND VAN EEN LEGEND DAT EEN SPAN IS */
+legend > span{
+    font-family: "RijksOverheidSansHeadingBold", fallback, sans-serif;
+    background-color: var(--black);
+    display: block;
+    width: 90%;
+    color: var(--white);
+    padding: 0.5rem;
+    margin: 0 0 0.5rem 0;
+}
+
+label:has(input:not([type=radio])){
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+label:has(input[type=radio]){
+    display: block;
+}
+
+input:not([type=radio]):not([type=submit]):not([type=file]){
+    margin: 0.3rem 0 0 0;
+    border-radius: 0.1em;
+    padding: 0 1rem 0 1rem;
+    height: 3rem;
+    background-color: var(--gray);
+    max-width: 60%;
+    border: 0.1rem solid var(--dark-gray);
+}
+
+input[type=file]{
+    padding:1rem;
+    background-color: var(--gray);
+    border: 0.1rem solid var(--dark-gray);
+    max-width: 60%;
+}
+
+@media screen and (min-width: 1000px) {
+    input:not([type=radio]):not([type=submit]){
+        max-width: 30%;
+    }
+}
+
+
+  /* :user-invalid */

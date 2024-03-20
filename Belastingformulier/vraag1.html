@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Erfbelasting 2023</title>
+    <link rel="stylesheet" type="text/css" href="./style/style.css">
+</head>
+<body>
+    <header class="logoBelastingdienstSection">
+        <img src="./assets/img/logoBelastingdienst.svg" alt="Belastingdienst logo">
+        <nav>
+            <ul class="navUl">
+                <li><a href="">i</a></li>
+                <li><a class="active" href="">1</a></li>
+                <li><a href="">2</a></li>
+                <li><a href="">3</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <form action="vraag2.html">
+            <section> <!-- VRAAG 1 SECTION -->
+                <h2>1. Gegevens van de overledene 💀</h2>
+                <fieldset> <!-- FIELDSET VRAAG 1 -->
+                    <fieldset> <!-- VRAAG 1A -->
+                        <legend><span>1a</span>Vul hier de gegevens in van de overledene.</legend>
+                        <label>Voorletter(s)
+                            <input type="text" id="voorLetters" name="voorLetters" required title="Vul de voorletters van de overledene in">
+                        </label>
+                        <label>Tussenvoegsel(s)
+                            <input type="text" id="tussenVoegsel" name="tussenVoegsel">
+                        </label>
+                        <label>Achternaam
+                            <input type="text" id="achterNaam" name="achterNaam" required>
+                        </label>
+                        <label>Overlijdensdatum
+                            <input type="date" id="overlijdensDatum" name="overlijdensDatum" required>
+                        </label>
+                    </fieldset> <!--EINDE VRAAG 1A-->
+                    <fieldset> <!-- VRAAG 1B -->
+                        <legend><span>1b</span>Was de overledene getrouwd of had de overledene een geregistreerd partner op het moment van overlijden?</legend>
+                        <fieldset>
+                            <label>
+                                <input type="radio" class="showConditionalContent" name="partnerStatus" value="ja" data-show-hide="conditionalVraag1b">
+                                Ja
+                            </label>
+                            <label>
+                                <input type="radio" class="hideConditionalContent" name="partnerStatus" value="nee" data-show-hide="conditionalVraag1b">
+                                Nee. Ga verder met vraag 1c.
+                            </label> 
+                        </fieldset>
+                        <div class="hiddenContent" id="conditionalVraag1b"> <!-- CONDITIONAL VRAGEN ALLEEN ZICHTBAAR ALS 1b (1E VRAAG) JA IS (HEEFT JAVASCRIPT NODIG) -->
+                            <fieldset> <!-- CONDITIONAL VRAAG 1-->
+                                <legend>Hadden de overledene en diens echtgenoot of geregistreerd partner huwelijkse of partnerschapsvoorwaarden laten vastleggen in een notariële akte?</legend>
+                                <label>
+                                    <input type="radio" class="hideConditionalContent" name="voorwaardenNotarieelVastgelegd" value="nee" data-show-hide="condtionalUpload1b">
+                                    Nee
+                                </label>
+                                <label>
+                                    <input type="radio" class="showConditionalContent" name="voorwaardenNotarieelVastgelegd" value="ja" data-show-hide="condtionalUpload1b">
+                                    Ja. Stuur een kopie van de akte mee met de aangifte.
+                                </label>
+                                <fieldset class="hiddenContent" id="condtionalUpload1b"> <!--CONDITIONAL FILE UPLOAD ALLEEN ZICHTBAAR ALS DE VORIGE VRAAG JA IS (HEEFT JAVASCRIPT NODIG)-->
+                                    <label>
+                                        Upload akte
+                                        <input type="file" name="uploadAkte">
+                                    </label>
+                                </fieldset>
+                            </fieldset>
+                            <fieldset> <!-- CONDITIONAL VRAAG 2-->
+                                <legend>Hadden de overledene en diens partner een finaal verrekenbeding?</legend>
+                                <label>
+                                    <input type="radio" id="finaalVerrekenbedingJa" name="finaalVerrekenbeding" value="ja">
+                                    Ja
+                                </label>
+                                <label>
+                                    <input type="radio" id="finaalVerrekenbedingNee" name="finaalVerrekenbeding" value="nee">
+                                    Nee
+                                </label>
+                            </fieldset>
+                            <label> <!-- CONDITIONAL VRAAG 3-->
+                                Datum huwelijkse of partnerschapsvoorwaarden
+                                <input type="date" name="datumVoorwaarden">
+                            </label>
+                        </div>
+                    </fieldset> <!--EINDE VRAAG 1B-->
+                    <fieldset> <!--VRAAG 1C-->
+                        <legend><span>1c</span>Had de overledene kinderen?</legend>
+                        <fieldset>
+                            <label>
+                                <input class="showConditionalContent" type="radio" name="overledenKinderenStatus" value="ja" data-show-hide="conditionalVraag1c">
+                                Ja
+                            </label>
+                            <label>
+                                <input class="hideConditionalContent" type="radio" name="overledenKinderenStatus" value="nee" data-show-hide="conditionalVraag1c">
+                                Nee. Ga verder met vraag 1d.
+                            </label>
+                            <!-- CONDITIONAL VRAGEN ALLEEN ZICHTBAAR ALS 1C (1E VRAAG) JA IS (HEEFT JAVASCRIPT NODIG) -->
+                            <fieldset class="hiddenContent" id="conditionalVraag1c">
+                                <legend>Is 1 van deze kinderen eerder overleden dan de overledene voor wie u nu aangifte doet?</legend>
+                                <label>
+                                    <input class="showConditionalContent" type="radio" class="showContent" name="overledenKinderenStatus2" value="ja" data-show-hide="conditionalVraag1c.1">
+                                    Ja
+                                </label>
+                                <label>
+                                    <input class="hideConditionalContent" type="radio" name="overledenKinderenStatus2" value="nee" data-show-hide="conditionalVraag1c.1">
+                                    Nee. Ga verder met vraag 1d.
+                                </label>
+                                <!-- CONDITIONAL VRAAG ALLEEN ZICHTBAAR EEN VAN DE KINDEREN EERDER IS OVERLEDEN (HEEFT JAVASCRIPT NODIG) -->
+                                <fieldset class="hiddenContent" id="conditionalVraag1c.1">
+                                    <legend>Had dit overleden kind zelf kinderen?</legend>
+                                    <label>
+                                        <input type="radio" class="showContent" name="overledenKinderenStatus3" value="ja">
+                                        Ja
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="overledenKinderenStatus3" value="nee">
+                                        Nee
+                                    </label>  
+                                </fieldset>
+                            </fieldset>
+                        </fieldset>
+                    </fieldset> <!--EINDE VRAAG 1C-->
+                    <fieldset> <!-- VRAAG 1D -->
+                        <legend><span>1d</span>Had de overledene een testament?</legend>
+                        <fieldset>
+                            <label>
+                                <input class="showConditionalContent" type="radio" name="overledenKinderenStatus3" value="ja" data-show-hide="conditionalVraag1d">
+                                Ja
+                            </label>
+                            <label>
+                                <input class="hideConditionalContent" type="radio" name="overledenKinderenStatus3" value="nee" data-show-hide="conditionalVraag1d">
+                                Nee. Ga verder met vraag 2.
+                            </label>
+                            <!-- CONDITIONAL VELDEN ALLEEN ZICHTBAAR ALS 1D (1E VRAAG) JA IS (HEEFT JAVASCRIPT NODIG) -->
+                            <fieldset class="hiddenContent" id="conditionalVraag1d">
+                                <legend>Vul de gegevens in van de notaris die het testament heeft opgemaakt en de datum van het testament.</legend>
+                                <label>
+                                    Protocolnummer notaris
+                                    <input type="text" pattern="^\d{6}$" title="Voer alstublieft 6 cijfers in">
+                                </label>
+                                <label>Voorletter(s)*
+                                    <input type="text" name="voorLettersNotaris">
+                                </label>
+                                <label>Tussenvoegsel(s)
+                                    <input type="text" name="tussenVoegselNotaris">
+                                </label>
+                                <label>Achternaam
+                                    <input type="text" name="achterNaamNotaris">
+                                </label>
+                                <label>
+                                    Vestigingsplaats
+                                    <input type="text" name="vestigingsPlaatsNotaris">
+                                </label>
+                                <label>
+                                    Datum van het testament of van de laatste wijziging
+                                    <input type="date">
+                                </label>
+                            </fieldset>
+                        </fieldset>
+                    </fieldset> <!--EINDE VRAAG 1D-->
+                </fieldset> <!--EINDE VRAAG 1-->
+            </section> <!--EINDE VRAAG 1 SECTION-->
+            <input class="button" type="submit" value="Volgende"> <!--VOLGENDE BUTTON-->
+        </form>
+    </section>
+    <script src="./javascript/script.js"></script>
+</body>
+</html>
+
+
+
+<!-- ITEMS TO FIX -->
+<!-- VALIDATION -->
+<!-- VRAAG 2B: ALLE INPUT TYPES EEN ID OFZO GEVEN EN EEN PATTERN GEVEN VOOR SOMMIGE ITEMS ZOALS LANDCODE-->
+<!-- CHECK WAT REQUIRED MOET ZIJN EN LET OP MET CONDITIONAL DINGEN -->
+<!--TOELICHTING FIXEN DUS INFORMATIE OVER DE VRAAG, MISSCHIEN ONDERAAN ZETTEN EN DAN DR NAARTOE LINKEN OFZO-->

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Erfbelasting 2023</title>
+    <link rel="stylesheet" type="text/css" href="./style/style.css">
+</head>
+<body>
+    <header class="logoBelastingdienstSection">
+        <img src="./assets/img/logoBelastingdienst.svg" alt="Belastingdienst logo">
+        <nav>
+            <ul>
+                <li><a href="index.html">i</a></li>
+                <li><a href="vraag1.html">1</a></li>
+                <li><a class="active" href="vraag2.html">2</a></li>
+                <li><a href="vraag3.html">3</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <form action="vraag3.html">
+            <section> <!-- VRAAG 2 SECTION -->
+                <h2>2. Gegevens gemachtigde</h2>
+                <p>Vul de gegevens van de gemachtigde in. De gemachtigde is degene die namens 1 of meerdere personen en/of instellingen aangifte doet. Het invullen van een telefoonnummer of e-mailadres is niet verplicht, maar wel handig. Dan kunnen wij u makkelijker vragen stellen of uitleg geven.</p>
+                <fieldset> <!--FIELDSET VRAAG 2-->
+                    <fieldset> <!--FIELDSET VRAAG 2A-->
+                        <legend><span>2a</span>Vul 1 van de 3 in: het burgerservicenummer of RSIN van de gemachtigde, het beconnummer van de adviseur of het protocolnummer van de notaris.</legend>
+                        <label>
+                            <input type="radio" class="showAndHideConditionalContent" name="infoNotarisGemachtigde" data-show="bsnRsinGemachtigde" data-hide="beconNummerAdviseur,protocolNummerNotaris">
+                            Burgerservicenummer/ RSIN gemachtigde
+                        </label>
+                            <input class="hiddenContent" id="bsnRsinGemachtigde" type="number" name="bsnGemachtigde" required>
+                        <label>
+                            <input type="radio" class="showAndHideConditionalContent" name="infoNotarisGemachtigde" data-show="beconNummerAdviseur" data-hide="bsnRsinGemachtigde,protocolNummerNotaris">
+                            Beconnummer adviseur
+                        </label>
+                            <input class="hiddenContent" id="beconNummerAdviseur" type="number" name="beconNummberAdviseur" required>
+                        <label>
+                            <input type="radio" class="showAndHideConditionalContent" name="infoNotarisGemachtigde" data-show="protocolNummerNotaris" data-hide="bsnRsinGemachtigde,beconNummerAdviseur">
+                            Protocolnummer notaris
+                        </label>
+                            <input class="hiddenContent" id="protocolNummerNotaris" type="number" name="protocolNummerNotaris" required>
+                    </fieldset> <!--EINDE VRAAG 2A-->
+                    <fieldset> <!--FIELDSET VRAAG 2B-->
+                        <legend><span>2b</span>Gegevens gemachtigde</legend>
+                        <label>
+                            Voorletter(s)
+                            <input type="text">
+                        </label>
+                        <label>
+                            tussenvoegsel(s)
+                            <input type="text">
+                        </label>
+                        <label>
+                            achternaam
+                            <input type="text">
+                        </label>
+                        <label>
+                            Naam instelling (bijvoorbeeld een notariskantoor)
+                            <input type="text">
+                        </label>
+                        <label>
+                            <input class="showAndHideConditionalContent" type="radio" name="locatieAdres" data-show="adresInNederland" data-hide="adresInBuitenland">
+                            Adres in Nederland
+                        </label>
+                        <label>
+                            <input class="showAndHideConditionalContent" type="radio" name="locatieAdres" data-show="adresInBuitenland" data-hide="adresInNederland">
+                            Adres in het buitenland
+                        </label>
+                        <!--CONDITIONAL VRAGEN ALLEEN ALS OF ADRES IN NEDERLAND OF ADRES IN HET BUITENLAND AAN STAAT (HEEFT JAVASCRIPT NODI)-->
+                        <fieldset class="hiddenContent" id="adresInNederland"> <!--ADRES IN NEDERLAND FIELDSET-->
+                            <legend>
+                                Adres in Nederland
+                            </legend>
+                            <label>
+                                Straat
+                                <input type="text">
+                            </label>
+                            <label>
+                                Huisnummer
+                                <input type="number">
+                            </label>
+                            <label>
+                                Toevoeging
+                                <input type="text">
+                            </label>
+                            <label>
+                                Postcode
+                                <input type="text" pattern="^\d{4}[a-zA-Z]{2}$" title="Voer alstublieft een postcode in (4 cijfers gevolgd door 2 letters)">
+                            </label>
+                            <label>
+                                Woonplaats
+                                <input type="text">
+                            </label>
+                        </fieldset> <!--EINDE ADRES IN NEDERLAND FIELDSET-->
+                        <fieldset class="hiddenContent" id="adresInBuitenland"> <!--ADRES IN HET BUITENLAND FIELDSET-->
+                            <legend>
+                                Adres in het buitenland
+                            </legend>
+                                <label>
+                                    Straat
+                                    <input type="text">
+                                </label>
+                                <label>
+                                    Huisnummer
+                                    <input type="number">
+                                </label>
+                                <label>
+                                    Postcode
+                                    <input type="text" pattern="^\d{4}[a-zA-Z]{2}$" title="Voer alstublieft een postcode in (4 cijfers gevolgd door 2 letters)">
+                                </label>
+                                <label>
+                                    Plaats
+                                    <input type="text">
+                                </label>
+                                <label>
+                                    Landcode
+                                    <input type="text">
+                                </label>
+                                <label>
+                                    Landcode
+                                    <input type="text">
+                                </label>
+                                <label>
+                                    Telefoonnummer
+                                    <input type="tel" pattern="^\d{10}$" title="Voer alstublieft een telefoonnummer in met 10 cijfers">
+                                </label>
+                                <label>
+                                    E-mailadres
+                                    <input type="email">
+                                </label>
+                        </fieldset> <!--EINDE ADRES IN HET BUITENLAND FIELDSET-->
+                    </fieldset> <!--EINDE VRAAG 2A-->
+                </fieldset> <!-- EINDE VRAAG 2-->
+            </section> <!--EINDE VRAAG 2 SECTION-->
+            <input class="button" type="submit" value="Volgende"> <!--SUBMIT BUTTON-->
+        </form>
+    </section>
+    <script src="./javascript/script.js"></script>
+</body>
+</html>
+
+
+
+<!-- ITEMS TO FIX -->
+<!-- VALIDATION -->
+<!-- VRAAG 2B: ALLE INPUT TYPES EEN ID OFZO GEVEN EN EEN PATTERN GEVEN VOOR SOMMIGE ITEMS ZOALS LANDCODE-->
+<!-- CHECK WAT REQUIRED MOET ZIJN EN LET OP MET CONDITIONAL DINGEN -->
+<!--TOELICHTING FIXEN DUS INFORMATIE OVER DE VRAAG, MISSCHIEN ONDERAAN ZETTEN EN DAN DR NAARTOE LINKEN OFZO-->
