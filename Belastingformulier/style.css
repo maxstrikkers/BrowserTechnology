@@ -198,11 +198,12 @@ input[type=file]{
 
   /* :user-invalid */
 
-input:not([type=radio]):not([type=submit]):not([type=file]):user-invalid {
+
+input:not([type=radio]):not([type=submit]):not([type=file]):not(focus):user-invalid {
     background-color: var(--invalid);
 }
 
-input:not([type=radio]):not([type=submit]):not([type=file]):user-invalid + .errorMessage {
+input:not([type="radio"]):not([type="submit"]):not([type="file"]):user-invalid + .errorMessage {
     background-color: var(--gray);
     color: var(--red);
     border-radius: 1rem;

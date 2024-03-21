@@ -6,6 +6,7 @@ const buttonsToShowAndHideContent = document.querySelectorAll(".showAndHideCondi
 document.documentElement.style.setProperty('--display-state', 'none'); // ZET DE DISPLAY VAN ALLE HIDDEN ELEMENTS OP NONE
 
 
+
 //LOOPT DOOR ELKE BUTTON HEEN OM ITEMS TE LATEN ZIEN EN KIJKT WELKE ER AANGEVINKT ZIJN EN ZET DE DISPLAY OP BLOCK
 buttonsToShowContent.forEach(button => {
   if (button.checked) {
@@ -22,6 +23,44 @@ buttonsToShowAndHideContent.forEach(button =>{
     showAndHideContent(button);
   }
 });
+
+
+// LOCALSTORAGE
+document.addEventListener('DOMContentLoaded', function() {
+
+
+  const formulier = document.querySelector('form'); // Selecteer het eerste formulier
+
+  herstelFormulier(formulier);
+
+
+  formulier.querySelectorAll('input').forEach(element =>{
+    // VOEGT EEN EVENTLISNER TOE DIE DINGEN OPSLAAT IN LOCALSTORAGE ONBLUR
+    element.addEventListener('blur', function(){
+      localStorage.setItem(element.name, element.value);
+    })
+    element.addEventListener('change', function(event){
+      if(event.target.checked){
+        console.log('je moeder')
+        console.log(element.value)
+      }
+    })
+  });
+});
+
+
+// FUNCTIE OM ALLE DINGEN IN HET FORMULIER WEER IN TE VULLEN
+function herstelFormulier(formulier) {
+  formulier.querySelectorAll('input, textarea').forEach(element => {
+    console.log('functie')
+    const waarde = localStorage.getItem(element.name);
+      if (waarde) {
+          element.value = waarde;
+      }
+  });
+}
+
+
 
 const conditionalLabels = document.querySelectorAll('input.hideConditionalContent, input.showConditionalContent'); // HAALT ALLE LABELS OP MET BIJVOORBEELD NEE. GA DOOR NAAR VRAAG 1C
 //ZORGT ERVOOR DAT ALLE TEXT ZOALS GA DOOR NAAR VRAAG 1C WEG GAAT ZODAT ER ALLEEN MAAR JA OF NEE STAAT
@@ -77,3 +116,5 @@ buttonsToHideContent.forEach(button => button.addEventListener('change', () => s
 buttonsToShowContent.forEach(button => button.addEventListener('change', () => showHideContent(button, 'block')));
 
 buttonsToShowAndHideContent.forEach(button => button.addEventListener('change',() => showAndHideContent(button)));
+
+

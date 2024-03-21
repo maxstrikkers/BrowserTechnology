@@ -30,11 +30,13 @@
                             Burgerservicenummer/ RSIN gemachtigde
                         </label>
                         <input class="hiddenContent" id="bsnRsinGemachtigde" type="text" name="bsnGemachtigde" pattern="\d{9}" title="BSN/RSIN moet bestaan uit 9 cijfers.">
+                        <span class="errorMessage" style="display: none;">BSN/RSIN moet bestaan uit 9 cijfers.</span>
                         <label>
                             <input type="radio" class="showAndHideConditionalContent" name="infoNotarisGemachtigde" data-show="beconNummerAdviseur" data-hide="bsnRsinGemachtigde,protocolNummerNotaris">
                             Beconnummer adviseur
                         </label>
                         <input class="hiddenContent" id="beconNummerAdviseur" type="text" name="beconNummerAdviseur" pattern="\d{6,7}" title="Beconnummer moet bestaan uit 6 of 7 cijfers.">
+                        <span class="errorMessage" style="display: none;">Beconnummer moet bestaan uit 6 of 7 cijfers.</span>
                         <label>
                             <input type="radio" class="showAndHideConditionalContent" name="infoNotarisGemachtigde" data-show="protocolNummerNotaris" data-hide="bsnRsinGemachtigde,beconNummerAdviseur">
                             Protocolnummer notaris
@@ -45,17 +47,21 @@
                     <fieldset> <!--FIELDSET VRAAG 2B-->
                         <legend><span>2b</span>Gegevens gemachtigde</legend>
                         <label>
-                            Voorletter(s)
-                            <input type="text" name="voorlettersGemachtigde" pattern="^[A-Z]+(?:\.[A-Z]+)*\.$" title="Vul de voorletters in, gescheiden door punten. Eindig met een punt.">
-                        </label>
-                        <label>
-                            Tussenvoegsel(s)
-                            <input type="text" name="tussenvoegselsGemachtigde">
-                        </label>
-                        <label>
-                            Achternaam
-                            <input type="text" name="achternaamGemachtigde" pattern="^[A-Za-z\s'-]+$" title="Gebruik alleen letters, spaties, apostrofs of koppeltekens.">
-                        </label>
+                            <label>Voorletter(s)
+                                <input type="text" id="voorLetters" name="voorLetters" required title="Vul de voorletters van de overledene in, gescheiden door punten (bijv. A.B.C.)." pattern="^[a-zA-Z](?:\.[a-zA-Z])*[.]$">
+                                <!-- Pattern uitleg: Moet beginnen met precies één letter (hoofdletters of kleine letters), gevolgd door nul of meer groepen bestaande uit een punt gevolgd door precies één letter. De string moet eindigen met een punt. Voorbeeld: A., B., A.B., a.b.c. -->
+                                <span class="errorMessage" style="display: none;">Vul de voorletters van de gemachtigde in, gescheiden door punten (bijv. A.B.C.).</span>
+                            </label>
+                            <label>Tussenvoegsel(s)
+                                <input type="text" id="tussenVoegsel" name="tussenVoegsel" pattern="^[a-z\s]+$" title="Gebruik alleen kleine letters en spaties.">
+                                <!-- Pattern uitleg: Alleen kleine letters en spaties zijn toegestaan. -->
+                                <span class="errorMessage" style="display: none;">Gebruik alleen kleine letters en spaties.</span>
+                            </label>
+                            <label>Achternaam
+                                <input type="text" id="achterNaam" name="achterNaam" required pattern="^[a-zA-Z\s\-']+$" title="Gebruik alleen letters, spaties, apostrofs of koppeltekens.">
+                                <!-- Pattern uitleg: Accepteert letters, spaties, apostrofs ('), en koppeltekens (-). -->
+                                <span class="errorMessage" style="display: none;">Gebruik alleen letters, spaties, apostrofs of koppeltekens.</span>
+                            </label>
                         <label>
                             Naam instelling (bijvoorbeeld een notariskantoor)
                             <input type="text" name="naamInstelling">
@@ -75,13 +81,15 @@
                                 <input type="text" name="straatNederland">
                             </label>
                             <label>Huisnummer
-                                <input type="number" name="huisnummerNederland">
+                                <input type="text" name="huisnummerNederland" pattern="^\d+[a-zA-Z]{0,4}$">
+                                <span class="errorMessage" style="display: none;">Voer alleen een getal in of een getal met een toevoeging (bijvoorbeeld 1a) </span>
                             </label>
                             <label>Toevoeging
                                 <input type="text" name="toevoegingNederland">
                             </label>
                             <label>Postcode
                                 <input type="text" name="postcodeNederland" pattern="^\d{4}[a-zA-Z]{2}$" title="Voer alstublieft een postcode in (4 cijfers gevolgd door 2 letters)">
+                                <span class="errorMessage" style="display: none;">Voer alstublieft een postcode in (4 cijfers gevolgd door 2 letters)</span>
                             </label>
                             <label>Woonplaats
                                 <input type="text" name="woonplaatsNederland">
@@ -93,7 +101,8 @@
                                 <input type="text" name="straatBuitenland">
                             </label>
                             <label>Huisnummer
-                                <input type="number" name="huisnummerBuitenland">
+                                <input type="text" name="huisnummerBuitenland" pattern="^\d+[a-zA-Z]{0,4}$">
+                                <span class="errorMessage" style="display: none;">Voer alstublieft een postcode in (4 cijfers gevolgd door 2 letters)</span>
                             </label>
                             <label>Postcode
                                 <input type="text" name="postcodeBuitenland">
@@ -108,7 +117,9 @@
                                 <input type="tel" name="telefoonnummerBuitenland" pattern="^\+?\d{10,15}$" title="Voer alstublieft een telefoonnummer in met 10 tot 15 cijfers, optioneel beginnend met een '+'.">
                             </label>
                             <label>E-mailadres
-                                <input type="email" name="emailBuitenland">
+                                <input type="email" name="emailBuitenland" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                                <!-- Pattern uitleg: Dit patroon staat een e-mailadres toe dat begint met letters of cijfers, gevolgd door een '@', een domeinnaam, en een extensie van twee of meer letters. -->
+                                <span class="errorMessage" id="emailError" style="display: none;">Voer alstublieft een geldig e-mailadres in</span>
                             </label>
                         </fieldset> <!--EINDE ADRES IN HET BUITENLAND FIELDSET-->
                     </fieldset> <!--EINDE VRAAG 2B-->

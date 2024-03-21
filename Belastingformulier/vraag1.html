@@ -25,20 +25,23 @@
                     <fieldset> <!-- VRAAG 1A -->
                         <legend><span>1a</span>Vul hier de gegevens in van de overledene.</legend>
                         <label>Voorletter(s)
-                            <input type="text" id="voorLetters" name="voorLetters" required title="Vul de voorletters van de overledene in, gescheiden door punten (bijv. A.B.C.)." pattern="^[A-Z]+(?:\.[A-Z]+)*\.$">
-                            <!-- Pattern uitleg: Moet beginnen met een of meer hoofdletters, gevolgd door punten. Voorbeeld: A.B.C. -->
+                            <input type="text" id="voorLetters" name="voorLettersOverledene" required title="Vul de voorletters van de overledene in, gescheiden door punten (bijv. A.B.C.)." pattern="^[a-zA-Z](?:\.[a-zA-Z])*[.]$">
+                            <!-- Pattern uitleg: Moet beginnen met precies één letter (hoofdletters of kleine letters), gevolgd door nul of meer groepen bestaande uit een punt gevolgd door precies één letter. De string moet eindigen met een punt. Voorbeeld: A., B., A.B., a.b.c. -->
+                            <span class="errorMessage" style="display: none;">Vul de voorletters van de overledene in, gescheiden door punten (bijv. A.B.C.).</span>
                         </label>
                         <label>Tussenvoegsel(s)
-                            <input type="text" id="tussenVoegsel" name="tussenVoegsel" pattern="^[a-z\s]+$" title="Gebruik alleen kleine letters en spaties.">
+                            <input type="text" id="tussenVoegsel" name="tussenVoegselOverledene" pattern="^[a-z\s]+$" title="Gebruik alleen kleine letters en spaties.">
                             <!-- Pattern uitleg: Alleen kleine letters en spaties zijn toegestaan. -->
+                            <span class="errorMessage" style="display: none;">Gebruik alleen kleine letters en spaties.</span>
                         </label>
                         <label>Achternaam
-                            <input type="text" id="achterNaam" name="achterNaam" required pattern="^[A-Za-z\s'-]+$" title="Gebruik alleen letters, spaties, apostrofs of koppeltekens.">
+                            <input type="text" id="achterNaam" name="achterNaamOverledene" required pattern="^[a-zA-Z\s\-']+$" title="Gebruik alleen letters, spaties, apostrofs of koppeltekens.">
                             <!-- Pattern uitleg: Accepteert letters, spaties, apostrofs ('), en koppeltekens (-). -->
+                            <span class="errorMessage" style="display: none;">Gebruik alleen letters, spaties, apostrofs of koppeltekens.</span>
                         </label>
                         <label>Overlijdensdatum
                             <input type="date" id="overlijdensDatum" name="overlijdensDatum" required title="Selecteer de overlijdensdatum.">
-                            <!-- Geen pattern nodig; de browser zorgt voor de datumvalidatie. -->
+                            <span class="errorMessage" style="display: none;" >Selecteer de overlijdensdatum.</span>
                         </label>
                     </fieldset> <!--EINDE VRAAG 1A-->
                     
@@ -58,12 +61,12 @@
                             <fieldset> <!-- CONDITIONAL VRAAG 1-->
                                 <legend>Hadden de overledene en diens echtgenoot of geregistreerd partner huwelijkse of partnerschapsvoorwaarden laten vastleggen in een notariële akte?</legend>
                                 <label>
-                                    <input type="radio" class="hideConditionalContent" name="voorwaardenNotarieelVastgelegd" value="nee" data-show-hide="condtionalUpload1b">
-                                    Nee
-                                </label>
-                                <label>
                                     <input type="radio" class="showConditionalContent" name="voorwaardenNotarieelVastgelegd" value="ja" data-show-hide="condtionalUpload1b">
                                     Ja. Stuur een kopie van de akte mee met de aangifte.
+                                </label>
+                                <label>
+                                    <input type="radio" class="hideConditionalContent" name="voorwaardenNotarieelVastgelegd" value="nee" data-show-hide="condtionalUpload1b">
+                                    Nee
                                 </label>
                                 <fieldset class="hiddenContent" id="condtionalUpload1b"> <!--CONDITIONAL FILE UPLOAD ALLEEN ZICHTBAAR ALS DE VORIGE VRAAG JA IS (HEEFT JAVASCRIPT NODIG)-->
                                     <label>
@@ -85,7 +88,7 @@
                             </fieldset>
                             <label> <!-- CONDITIONAL VRAAG 3-->
                                 Datum huwelijkse of partnerschapsvoorwaarden
-                                <input type="date" name="datumVoorwaarden">
+                                <input type="date" name="datumVoorwaardenHuwelijkPartner">
                             </label>
                         </div>
                     </fieldset> <!--EINDE VRAAG 1B-->
@@ -142,20 +145,24 @@
                                 <legend>Vul de gegevens in van de notaris die het testament heeft opgemaakt en de datum van het testament.</legend>
                                 <label>
                                     Protocolnummer notaris
-                                    <input type="text" pattern="^\d{6}$" title="Voer alstublieft 6 cijfers in">
+                                    <input type="text" name="protocolNummerNotaris" pattern="^\d{6}$" title="Voer alstublieft 6 cijfers in">
+                                    <span class="errorMessage" style="display: none;">Voer alstublieft 6 cijfers in</span>
                                     <!-- Pattern uitleg: 6 cijfers -->
-                                    <label>Voorletter(s)*
-                                        <input type="text" id="voorLetters" name="voorLetters" pattern="^[A-Z]([\.][A-Z])*\.?$" title="Voer de voorletters in. Als er meerdere letters zijn, scheid ze met een punt.">
+                                    <label>Voorletter(s)
+                                        <input type="text" id="voorLettersNotaris" name="voorLetters" title="Vul de voorletters van de overledene in, gescheiden door punten (bijv. A.B.C.)." pattern="^[a-zA-Z](?:\.[a-zA-Z])*$">
+                                        <!-- Pattern uitleg: Moet beginnen met precies één letter (hoofdletters of kleine letters), gevolgd door nul of meer groepen bestaande uit een punt gevolgd door precies één letter. De string mag niet beginnen met een punt en mag ook niet eindigen met een punt. Voorbeeld: A, B, A.B, a.b.c, A.b -->
+                                        <span class="errorMessage" style="display: none;">Vul de voorletters van de overledene in, gescheiden door punten (bijv. A.B.C.).</span>
                                     </label>
-                                    <!-- Pattern uitleg:  "^[A-Z]([\.][A-Z])*\.?$" staat voor een enkele hoofdletter gevolgd door nul of meer combinaties van een punt en een andere hoofdletter, met een optionele punt aan het einde. -->                                    
                                     <label>Tussenvoegsel(s)
-                                        <input type="text" id="tussenVoegsel" name="tussenVoegsel" pattern="^[a-z\s]*$" title="Gebruik alleen kleine letters en spaties.">
+                                        <input type="text" id="tussenVoegselNotaris" name="tussenVoegsel" pattern="^[a-z\s]+$" title="Gebruik alleen kleine letters en spaties.">
+                                        <!-- Pattern uitleg: Alleen kleine letters en spaties zijn toegestaan. -->
+                                        <span class="errorMessage" style="display: none;">Gebruik alleen kleine letters en spaties.</span>
                                     </label>
-                                    <!-- Pattern uitleg: "^[a-z\s]*$" staat voor nul of meer kleine letters of spaties. -->
                                     <label>Achternaam
-                                        <input type="text" id="achterNaam" name="achterNaam" pattern="^[A-Za-z\s'-]+$" title="Gebruik alleen letters, spaties, apostrofs of koppeltekens.">
+                                        <input type="text" id="achterNaamNotaris" name="achterNaam" required pattern="^[a-zA-Z\s\-']+$" title="Gebruik alleen letters, spaties, apostrofs of koppeltekens.">
+                                        <!-- Pattern uitleg: Accepteert letters, spaties, apostrofs ('), en koppeltekens (-). -->
+                                        <span class="errorMessage" style="display: none;">Gebruik alleen letters, spaties, apostrofs of koppeltekens.</span>
                                     </label>
-                                    <!-- Pattern uitleg: "^[A-Za-z\s'-]+$" staat voor een of meer letters (zowel hoofdletters als kleine letters), spaties, apostrofs ('), of koppeltekens (-). -->
                                 <label>
                                     Vestigingsplaats
                                     <input type="text" name="vestigingsPlaatsNotaris">
