@@ -168,4 +168,45 @@ In de eerste week stortte ik me volledig op de structuur van de HTML. Het was be
 ```
 
 ## Week 2
+Ik heb JavaScript gebruikt om ervoor te zorgen dat bepaalde vragen in het formulier alleen zichtbaar zijn als dat nodig is. Dit heb ik "conditional vragen" genoemd. Als je bijvoorbeeld aangeeft dat de overledene getrouwd was, verschijnen er extra vragen die relevant zijn. Als je 'nee' kiest, blijven die vragen verborgen.
+
+Om dit te kunnen doen, heb ik gebruikgemaakt van data-attributen. Op die manier heb ik een systeem gecreëerd dat altijd werkt, mits de HTML correct is opgesteld. Ik heb drie soorten knoppen: één om content te tonen, één om content te verbergen, en één om content zowel te tonen als te verbergen. De knoppen krijgen allemaal een van deze classes: `showConditionalContent`, `hideConditionalContent`, `showAndHideConditionalContent`. Vervolgens geef ik data mee die aangeeft wat er moet gebeuren: tonen, verbergen, of beide. Dit doe ik bij het tonen of verbergen op de volgende manier: `data-show-hide="conditionalVraag1b"`. Hiermee geef ik aan dat het item met de ID `conditionalVraag1b` getoond of verborgen moet worden, afhankelijk van de class van de knop. In het geval van zowel tonen als verbergen, geef ik de data op de volgende manier mee: `data-show="beconNummerAdviseur"` `data-hide="bsnRsinGemachtigde,protocolNummerNotaris"`. Als er meerdere items getoond of verborgen moeten worden, worden de ID's van deze items gescheiden door een komma opgegeven.
+
+In dit geval roep ik eerst alle knoppen op met de class voor het tonen of verbergen van content. Hierna loop ik door elke knop heen en voeg ik een eventlistener toe aan elke knop. In het geval van de verbergknop roep ik de `showHide`-functie op met de parameters `button` (de knop) en `none`. In het geval van de toonknop doe ik hetzelfde, maar dan met de parameter `block`.
+
+```
+buttonsToShowContent.forEach(button => button.addEventListener('change', () => showHideContent(button, 'block')));
+
+// FUNCTIE OM CONDITIONAL ITEMS TE LATEN ZIEN OF TE HIDEN DEZE ZORGT ER VOOR DAT OF IETS GETOOND WORD OF IETS VERBORGEN WORD
+function showHideContent(button, style){
+  const idToShowHide = button.dataset.showHide;
+  if (idToShowHide.includes(',')){
+    const idToShowHideArray = idToShowHide.split(',');
+    idToShowHideArray.forEach(id => {
+      document.getElementById(id).style.display = style;
+    });
+  } else if (!idToShowHide.includes(',')){
+      document.getElementById(idToShowHide).style.display = style;
+    };
+};
+
+```
+
+Tekst Vereenvoudigen
+
+Ik heb ook de teksten naast de 'ja' en 'nee' opties simpeler gemaakt. Eerst stond er bij 'nee' soms iets als "Nee. Ga door naar vraag 2." Nu staat er alleen "Nee". Dit maakt het formulier duidelijker en minder rommelig.
+
+```
+const conditionalLabels = document.querySelectorAll('input.hideConditionalContent, input.showConditionalContent'); // HAALT ALLE LABELS OP MET BIJVOORBEELD NEE. GA DOOR NAAR VRAAG 1C
+//ZORGT ERVOOR DAT ALLE TEXT ZOALS GA DOOR NAAR VRAAG 1C WEG GAAT ZODAT ER ALLEEN MAAR JA OF NEE STAAT
+conditionalLabels.forEach(element => {
+  innerText = element.parentNode.childNodes[2]
+  if (innerText.textContent.includes("Nee")){
+    innerText.textContent = "Nee";
+  } else if (innerText.textContent.includes("Ja")){
+    innerText.textContent = "Ja";
+  }
+});
+
+```
 
