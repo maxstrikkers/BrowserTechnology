@@ -246,4 +246,27 @@ conditionalLabels.forEach(element => {
 ```
 
 ## Week 3
+In week 3 heb ik de styling, maar vooral de validatie via CSS toegevoegd en die ziet er als volgt uit. Ik heb een span onder de input geplaatst die standaard op hidden staat. Als het element `user-invalid` is dan zal deze span zichtbaar worden in het rood met de juiste error text.
+
+
+
+```
+
+input:not([type=radio]):not([type=submit]):not([type=file]):user-invalid {
+    background-color: var(--invalid);
+}
+
+input:not([type=radio]):not([type=submit]):not([type=file]):user-invalid + .errorMessage {
+    background-color: var(--gray);
+    color: var(--red);
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    display: block;
+}
+
+input:not([type=radio]):not([type=submit]):not([type=file]):user-valid {
+    background-color: var(--valid);
+}
+```
 
