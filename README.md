@@ -172,7 +172,9 @@ Ik heb JavaScript gebruikt om ervoor te zorgen dat bepaalde vragen in het formul
 
 Om dit te kunnen doen, heb ik gebruikgemaakt van data-attributen. Op die manier heb ik een systeem gecreëerd dat altijd werkt, mits de HTML correct is opgesteld. Ik heb drie soorten knoppen: één om content te tonen, één om content te verbergen, en één om content zowel te tonen als te verbergen. De knoppen krijgen allemaal een van deze classes: `showConditionalContent`, `hideConditionalContent`, `showAndHideConditionalContent`. Vervolgens geef ik data mee die aangeeft wat er moet gebeuren: tonen, verbergen, of beide. Dit doe ik bij het tonen of verbergen op de volgende manier: `data-show-hide="conditionalVraag1b"`. Hiermee geef ik aan dat het item met de ID `conditionalVraag1b` getoond of verborgen moet worden, afhankelijk van de class van de knop. In het geval van zowel tonen als verbergen, geef ik de data op de volgende manier mee: `data-show="beconNummerAdviseur"` `data-hide="bsnRsinGemachtigde,protocolNummerNotaris"`. Als er meerdere items getoond of verborgen moeten worden, worden de ID's van deze items gescheiden door een komma opgegeven.
 
-In dit geval roep ik eerst alle knoppen op met de class voor het tonen of verbergen van content. Hierna loop ik door elke knop heen en voeg ik een eventlistener toe aan elke knop. In het geval van de verbergknop roep ik de `showHide`-functie op met de parameters `button` (de knop) en `none`. In het geval van de toonknop doe ik hetzelfde, maar dan met de parameter `block`.
+In dit geval roep ik eerst alle knoppen op met de class voor het tonen of verbergen van content. Hierna loop ik door elke knop heen en voeg ik een eventlistener toe aan elke knop. In het geval van de verbergknop roep ik de `showHide`-functie op met de parameters `button` (de knop) en `none`. In het geval van de toonknop doe ik hetzelfde, maar dan met de parameter `block`. 
+
+De functie kijkt eerst of er een , in het data atrubuut staat en zal vervolgens de string splitten om door elk element van de gemaakte array heen lopen om de style van de elementen met die is's juist te zetten.
 
 ```
 buttonsToShowContent.forEach(button => button.addEventListener('change', () => showHideContent(button, 'block')));
@@ -192,6 +194,39 @@ function showHideContent(button, style){
 
 ```
 
+Deze functie zal een of meer items tonen en verbergeren. Deze fucntie maakt gebruik van hetzelfde concept als de functie hiervoor, maar hier word gespecificeerd welk item getoond moet worden en welke verborgen. 
+
+```
+
+buttonsToShowAndHideContent.forEach(button => button.addEventListener('change',() => showAndHideContent(button)));
+
+// FUNCTIE OM CONDITIONAL ITEMS TE LATEN ZIEN EN ANDERE TE VERBERGEN DEZE FUNCTIE ZORGT ER DUS VOOR DAT ER EEN ITEMS GETOOND WORD EN EEN ANDER ITEM VERBORGEN WORD
+function showAndHideContent(button){
+  const idToHide = button.dataset.hide
+  const idToShow = button.dataset.show
+  // CHECKT OF ER EEN OF MEERDERE ITEMS VERBORGEN MOETEN WORDEN
+  if (idToHide.includes(',')){
+    const idToHideArray = idToHide.split(',');
+    idToHideArray.forEach(id => {
+      document.getElementById(id).style.display = 'none';
+    });
+  } else if (!idToHide.includes(',')){
+    document.getElementById(idToHide).style.display = 'none'; 
+  };
+  //CHECKT OF ER EEN OF MEERDERE ITEMS GETOOND MOETEN WORDEN
+  if (idToShow.includes(',')){
+    const idToShowArray = idToShow.split(',');
+    idToShowArray.forEach(id => {
+      document.getElementById(id).style.display = 'block';
+    });
+  } else if (!idToShow.includes(',')){
+    document.getElementById(idToShow).style.display = 'block';
+  };
+};
+
+```
+
+
 Tekst Vereenvoudigen
 
 Ik heb ook de teksten naast de 'ja' en 'nee' opties simpeler gemaakt. Eerst stond er bij 'nee' soms iets als "Nee. Ga door naar vraag 2." Nu staat er alleen "Nee". Dit maakt het formulier duidelijker en minder rommelig.
@@ -209,4 +244,6 @@ conditionalLabels.forEach(element => {
 });
 
 ```
+
+## Week 3
 
